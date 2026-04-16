@@ -1,0 +1,437 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AURA TEA CO. — Mobile Showcase</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CDN (inside main HTML) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            serif: ['"Playfair Display"', "ui-serif", "Georgia", "serif"],
+            sans: ['"Inter"', "ui-sans-serif", "system-ui", "sans-serif"],
+          },
+          colors: {
+            cream: "#f6f1e4",
+            paper: "#fbf8f1",
+            ink: "#0e1a14",
+            moss: "#243a2f",
+            sage: "#6c7f73",
+            gold: "#c5a25d",
+            line: "rgba(14, 26, 20, .12)"
+          },
+          boxShadow: {
+            soft: "0 18px 40px rgba(14,26,20,.12)",
+            card: "0 14px 30px rgba(14,26,20,.12)"
+          }
+        }
+      }
+    }
+  </script>
+
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body class="bg-paper text-ink font-sans overflow-x-hidden">
+  <!-- Top progress -->
+  <div class="fixed top-0 left-0 right-0 z-[90] h-1 bg-transparent">
+    <div id="progress" class="h-full w-0 bg-moss"></div>
+  </div>
+
+  <div class="page-bg min-h-screen">
+    <!-- Header -->
+    <header class="sticky top-0 z-[80] bg-paper/80 backdrop-blur border-b border-line">
+      <div class="mx-auto max-w-[1050px] px-4">
+        <div class="flex items-center justify-between py-3">
+          <!-- Logo -->
+          <a href="#home" class="flex items-center gap-2">
+            <span class="inline-flex h-9 w-9 rounded-full border border-line bg-white/60 items-center justify-center">
+              <!-- leaf -->
+              <svg viewBox="0 0 24 24" class="h-5 w-5 text-moss" fill="none">
+                <path d="M20 4c-8 1-13 6-14 14 8-1 13-6 14-14Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                <path d="M6 18c2-6 7-10 14-14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+            </span>
+            <div class="leading-tight">
+              <div class="font-serif tracking-wide text-sm font-semibold">AURA TEA CO.</div>
+              <div class="text-[10px] uppercase tracking-[.25em] text-sage">Est. 2024</div>
+            </div>
+          </a>
+
+          <!-- Desktop nav -->
+          <nav class="hidden lg:flex items-center gap-5 text-[11px] uppercase tracking-[.22em] text-moss/90">
+            <a class="navlink" href="#shop">Shop</a>
+            <a class="navlink" href="#collections">Collections</a>
+            <a class="navlink" href="#story">Our Story</a>
+            <a class="navlink" href="#journal">Journal</a>
+            <a class="navlink" href="#gift">Gift Cards</a>
+            <a class="navlink" href="#contact">Contact</a>
+          </nav>
+
+          <!-- Icons -->
+          <div class="flex items-center gap-2">
+            <button class="iconbtn" aria-label="Search">
+              <svg viewBox="0 0 24 24" class="h-5 w-5" fill="none">
+                <path d="M11 19a8 8 0 1 1 0-16 8 8 0 0 1 0 16Z" stroke="currentColor" stroke-width="2"/>
+                <path d="m21 21-4.3-4.3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+            </button>
+
+            <button class="iconbtn" aria-label="Account">
+              <svg viewBox="0 0 24 24" class="h-5 w-5" fill="none">
+                <path d="M12 12a4 4 0 1 0-4-4 4 4 0 0 0 4 4Z" stroke="currentColor" stroke-width="2"/>
+                <path d="M20 21a8 8 0 1 0-16 0" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+            </button>
+
+            <button class="iconbtn relative" aria-label="Cart">
+              <svg viewBox="0 0 24 24" class="h-5 w-5" fill="none">
+                <path d="M6 7h15l-2 10H8L6 7Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                <path d="M6 7 5 3H2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <path d="M9 21a1 1 0 1 0 0-2 1 1 0 0 0 0 2Zm8 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2Z" fill="currentColor"/>
+              </svg>
+              <span class="absolute -top-1 -right-1 inline-flex h-4 min-w-4 items-center justify-center rounded-full bg-gold text-[10px] font-bold text-white px-1">
+                2
+              </span>
+            </button>
+
+            <button id="menuBtn" class="lg:hidden iconbtn" aria-label="Open menu">
+              <svg viewBox="0 0 24 24" class="h-5 w-5" fill="none">
+                <path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- Mobile menu -->
+        <div id="mobileMenu" class="lg:hidden hidden pb-3">
+          <div class="grid gap-1 text-[11px] uppercase tracking-[.22em] text-moss/90">
+            <a class="mobilelink" href="#shop">Shop</a>
+            <a class="mobilelink" href="#collections">Collections</a>
+            <a class="mobilelink" href="#story">Our Story</a>
+            <a class="mobilelink" href="#journal">Journal</a>
+            <a class="mobilelink" href="#gift">Gift Cards</a>
+            <a class="mobilelink" href="#contact">Contact</a>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main id="home" class="mx-auto max-w-[1050px] px-4">
+      <!-- HERO -->
+      <section class="pt-5">
+        <div class="hero reveal">
+          <!-- Use your exact hero image here -->
+          <img class="hero-img" src="images/1776280400713-019d928f-60d8-749e-8103-3af30ed07bf1.png" alt="Tea fields hero" />
+
+          <div class="hero-overlay"></div>
+
+          <div class="hero-content">
+            <div class="text-center px-4">
+              <div class="font-serif text-3xl sm:text-4xl leading-tight tracking-tight text-white drop-shadow">
+                DISCOVER THE ART OF TEA
+              </div>
+              <p class="mt-3 text-white/90 text-sm sm:text-base max-w-[42ch] mx-auto">
+                Handcrafted blends, ethically sourced from the world’s finest tea gardens.
+              </p>
+              <a href="#collections" class="btn-hero mt-5 inline-flex">EXPLORE THE BLENDS</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- FEATURED COLLECTIONS -->
+      <section id="collections" class="pt-8 sm:pt-10">
+        <div class="section-title reveal">
+          <h2>FEATURED COLLECTIONS</h2>
+        </div>
+
+        <div class="mt-5 grid gap-4 sm:grid-cols-3">
+          <!-- Card 1 -->
+          <article class="collection-card reveal">
+            <div class="collection-img">
+              <img src="images/ELEGANT_CLASSICS.png" alt="Elegant Classics">
+            </div>
+            <div class="collection-body">
+              <div class="collection-name">ELEGANT CLASSICS</div>
+              <p class="collection-desc">Handcrafted teas, classic profiles and timeless elegance.</p>
+            </div>
+          </article>
+
+          <!-- Card 2 -->
+          <article class="collection-card reveal">
+            <div class="collection-img">
+              <img src="images/WELLNESS_BLENDS.png" alt="Wellness Blends">
+            </div>
+            <div class="collection-body">
+              <div class="collection-name">WELLNESS BLENDS</div>
+              <p class="collection-desc">Botanical blends designed for balance and calm.</p>
+            </div>
+          </article>
+
+          <!-- Card 3 -->
+          <article class="collection-card reveal">
+            <div class="collection-img">
+              <img src="images/ARTISAN_PICKS.png" alt="Artisan Picks">
+            </div>
+            <div class="collection-body">
+              <div class="collection-name">ARTISAN PICKS</div>
+              <p class="collection-desc">Small-batch favorites, crafted with care and detail.</p>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- BEST SELLERS -->
+      <section id="shop" class="pt-10">
+        <div class="section-title reveal">
+          <h2>BEST SELLERS</h2>
+        </div>
+
+        <div class="mt-5 grid gap-4 sm:grid-cols-3">
+          <!-- Product 1 -->
+          <article class="product-card reveal">
+            <div class="product-img">
+              <img src="images/LOUSHOU.png" alt="Earl Grey Reserve">
+            </div>
+            <div class="product-body">
+              <div class="product-name">Earl Grey Reserve</div>
+              <p class="product-desc">Bergamot-forward, smooth black tea with a refined finish.</p>
+
+              <div class="mt-3 flex items-center justify-between">
+                <div class="text-sm">
+                  <span class="price">$22.00</span>
+                  <span class="oldprice">$28.00</span>
+                </div>
+                <div class="rating" aria-label="Rating 5 out of 5">
+                  ★★★★★
+                </div>
+              </div>
+
+              <button class="btn-add mt-4" type="button" data-toast="Added Earl Grey Reserve to cart">
+                ADD TO CART
+              </button>
+            </div>
+          </article>
+
+          <!-- Product 2 -->
+          <article class="product-card reveal">
+            <div class="product-img">
+              <img src="images/MintTea.png" alt="Moroccan Mint">
+            </div>
+            <div class="product-body">
+              <div class="product-name">Moroccan Mint</div>
+              <p class="product-desc">Bright mint and green tea—fresh, clean, and uplifting.</p>
+
+              <div class="mt-3 flex items-center justify-between">
+                <div class="text-sm">
+                  <span class="price">$22.00</span>
+                  <span class="oldprice">$28.00</span>
+                </div>
+                <div class="rating" aria-label="Rating 5 out of 5">★★★★★</div>
+              </div>
+
+              <button class="btn-add mt-4" type="button" data-toast="Added Moroccan Mint to cart">
+                ADD TO CART
+              </button>
+            </div>
+          </article>
+
+          <!-- Product 3 -->
+          <article class="product-card reveal">
+            <div class="product-img">
+              <img src="images/yaum.png" alt="Jasmine Pearl">
+            </div>
+            <div class="product-body">
+              <div class="product-name">Jasmine Pearl</div>
+              <p class="product-desc">Delicate jasmine aroma with a silky, floral cup.</p>
+
+              <div class="mt-3 flex items-center justify-between">
+                <div class="text-sm">
+                  <span class="price">$22.00</span>
+                  <span class="oldprice">$28.00</span>
+                </div>
+                <div class="rating" aria-label="Rating 5 out of 5">★★★★★</div>
+              </div>
+
+              <button class="btn-add mt-4" type="button" data-toast="Added Jasmine Pearl to cart">
+                ADD TO CART
+              </button>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- OUR PHILOSOPHY -->
+      <section id="story" class="pt-10">
+        <div class="split-card reveal">
+          <div class="split-img">
+            <img src="images/OUR_PHILOSOPHY.png" alt="Tea farmer in garden">
+          </div>
+          <div class="split-body">
+            <div class="split-title">OUR PHILOSOPHY</div>
+            <p class="split-text">
+              Our mission is rooted in craftsmanship and calm: carefully selecting leaves,
+              honoring origin, and blending with restraint—so every cup feels intentional.
+            </p>
+            <a href="#contact" class="btn-soft mt-4 inline-flex">LEARN MORE</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- THE JOURNEY -->
+      <section id="journal" class="pt-10">
+        <div class="section-title reveal">
+          <h2>THE JOURNEY</h2>
+          <p class="subtitle">Journal</p>
+        </div>
+
+        <div class="mt-5 grid gap-4 sm:grid-cols-3">
+          <article class="post-card reveal">
+            <div class="post-img">
+              <img src="images/olongtea.png" alt="The history of oolong">
+            </div>
+            <div class="post-body">
+              <div class="post-title">The History of Oolong</div>
+              <p class="post-text">Explore the craft, oxidation, and depth behind oolong tea.</p>
+              <a class="post-link" href="#contact">READ MORE</a>
+            </div>
+          </article>
+
+          <article class="post-card reveal">
+            <div class="post-img">
+              <img src="images/brewing.png" alt="Mindful brewing guide">
+            </div>
+            <div class="post-body">
+              <div class="post-title">Mindful Brewing Guide</div>
+              <p class="post-text">Simple steps to brew with clarity, calm, and consistency.</p>
+              <a class="post-link" href="#contact">READ MORE</a>
+            </div>
+          </article>
+
+          <article class="post-card reveal">
+            <div class="post-img">
+              <img src="images/theeareant.png" alt="The forest guide">
+            </div>
+            <div class="post-body">
+              <div class="post-title">The Forest Guide</div>
+              <p class="post-text">A quick guide to pairing botanicals with tea profiles.</p>
+              <a class="post-link" href="#contact">READ MORE</a>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- NEWSLETTER -->
+      <section id="gift" class="pt-10 pb-6">
+        <div class="newsletter reveal">
+          <div class="text-center">
+            <div class="section-title !mb-2">
+              <h2>STAY CONNECTED</h2>
+              <p class="subtitle">Subscribe to our newsletter</p>
+            </div>
+
+            <form id="newsletterForm" class="mt-4 flex flex-col sm:flex-row gap-2 justify-center">
+              <label class="sr-only" for="email">Email</label>
+              <input id="email" type="email" required class="input" placeholder="Email address" />
+              <button class="btn-subscribe" type="submit">SUBSCRIBE</button>
+            </form>
+
+            <div id="toast" class="toast hidden" role="status" aria-live="polite"></div>
+          </div>
+        </div>
+      </section>
+
+<section class="pb-10">
+  <div class="ig-grid reveal !gap-3 !p-3 !bg-white/60">
+    <img class="rounded-xl border border-line" src="images/WELLNESS_BLENDS.png" alt="Instagram 1">
+    <img class="rounded-xl border border-line" src="images/ELEGANT_CLASSICS.png" alt="Instagram 2">
+    <img class="rounded-xl border border-line" src="images/brewing.png" alt="Instagram 3">
+    <img class="rounded-xl border border-line" src="images/WELLNESS_BLENDS.png" alt="Instagram 4">
+  </div>
+</section>
+
+      <!-- Footer -->
+      <footer id="contact" class="pb-10">
+        <div class="footer reveal">
+          <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+            <div>
+              <div class="flex items-center gap-2">
+                <span class="inline-flex h-9 w-9 rounded-full border border-line bg-white/60 items-center justify-center">
+                  <svg viewBox="0 0 24 24" class="h-5 w-5 text-gold" fill="none">
+                    <path d="M20 4c-8 1-13 6-14 14 8-1 13-6 14-14Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                    <path d="M6 18c2-6 7-10 14-14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                  </svg>
+                </span>
+                <div class="font-serif tracking-wide font-semibold">AURA</div>
+              </div>
+              <div class="mt-3 text-sm text-paper/80">
+                Crafted teas, calm rituals, modern taste.
+              </div>
+            </div>
+
+            <div>
+              <div class="foot-title">Shop</div>
+              <div class="foot-links">
+                <a href="#shop">Best Sellers</a>
+                <a href="#collections">Collections</a>
+                <a href="#gift">Gift Cards</a>
+              </div>
+            </div>
+
+            <div>
+              <div class="foot-title">Contact</div>
+              <div class="foot-links">
+                <a href="mailto:hello@auratea.co">hello@auratea.co</a>
+                <a href="#contact">Support</a>
+                <a href="#contact">Shipping</a>
+              </div>
+            </div>
+
+            <div>
+  <div class="foot-title">Follow</div>
+
+  <div class="flex items-center gap-3 mt-3">
+    <a class="social" href="#" aria-label="Instagram">
+      <img class="social-icon" src="icons/instagram.png" alt="Instagram">
+    </a>
+
+    <a class="social" href="#" aria-label="Pinterest">
+      <img class="social-icon" src="icons/pinterest.png" alt="Pinterest">
+    </a>
+
+    <a class="social" href="#" aria-label="X">
+      <img class="social-icon" src="icons/twitter.png" alt="X">
+    </a>
+
+    <a class="social" href="#" aria-label="YouTube">
+      <img class="social-icon" src="icons/youtube.png" alt="YouTube">
+    </a>
+  </div>
+</div>
+
+          <div class="mt-8 pt-5 border-t border-white/15 flex flex-col sm:flex-row items-center justify-between gap-2 text-[11px] text-paper/70 uppercase tracking-[.22em]">
+            <div>© <span id="year"></span> Aura Tea Co.</div>
+            <div class="flex gap-3">
+              <a href="#">Terms</a>
+              <span class="opacity-50">•</span>
+              <a href="#">Privacy</a>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </main>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
